@@ -71,8 +71,10 @@ class Links extends BaseController {
      * Retrieve single user links
      * @param int $id
      */
-    public function show(Response $response, $id) {
+    public function show(Request $request, Response $response, $linkId)
+    {
         try {
+            $id = $linkId['linkId'];
             $save = $this->db->select('user_links', ['id' => $id, 'user_id' => $this->getUserId()]);;
             if($save) {
                 $response->getBody()->write(get_success_response($save));
